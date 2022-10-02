@@ -31,6 +31,8 @@ const server =http.createServer((req, res)=>{
     else{
         res.end("Page Not Found")
     }
+    let a;
+    // abu huraira 
     res.end('Hello From The Server')
 }); 
 server.listen(8000,'127.0.0.1', ()=>{

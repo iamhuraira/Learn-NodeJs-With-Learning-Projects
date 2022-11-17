@@ -2,7 +2,9 @@ const express = require('express')
 const app = express();
 const fs = require('fs')
 const axios = require("axios");
-const { getEnvironmentData } = require('worker_threads');
+const {
+    getEnvironmentData
+} = require('worker_threads');
 
 
 /* app.get('/', (req, res) => {
@@ -19,7 +21,7 @@ app.use(express.json())
 
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`))
 
-/* app.get('/api/v1/tours', (req, res) => {
+app.get('/api/v1/tours', (req, res) => {
     res.status(200).json({
         status: 'Success',
         results: tours.length,
@@ -45,17 +47,40 @@ app.post('/api/v1/tours', (req, res) => {
         })
     })
     // res.send("Done")
-})*/
+})
+
+// Gettting a single tour
+
+app.get('/api/v1/tours/:id', (req, res) => {
+    console.log(req.params);
+    const id = req.params.id * 1;
+    const tour = tours.find(el => el.id === id)
+    if (!tour) {
+        return res.status(404).json({
+            status: "fail",
+            message: "Invalid ID",
+        })
+    }
+    res.status(200).json({
+        status: 'Success',
+        data: {
+            tour
+        }
+    })
+})
+
+
 const port = 3000;
 
 app.listen(port, () => {
     console.log(`App Running OnPort ${port}.....`)
 
-}) 
-
+})
+/* 
  async function makerequest (){
     let result = await axios.get('http://127.0.0.1:3000/api/v1/tours');
     console.log(result.status)
 }
 let response = makerequest()
 console.log(response)
+ */

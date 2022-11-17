@@ -70,6 +70,23 @@ app.get('/api/v1/tours/:id', (req, res) => {
 })
 
 
+// Updating A Tour 
+app.patch('/api/v1/tours/:id', (req, res) => {
+    if (req.params.id * 1 > tours.length) {
+        return res.status(404).json({
+            status: "Fail",
+            message: "Invalid Id"
+        })
+    }
+    res.status(200).json({
+        status: "Success",
+        data: {
+            tour: "<Updated Tour Here>"
+        }
+    })
+})
+
+
 const port = 3000;
 
 app.listen(port, () => {

@@ -9,7 +9,7 @@ const userRouter = require('./routes/userRoutes');
     res.status(200).json({
         message: 'Hello From the Server Side',
         app: 'Natours'
-    });
+    }); 
 })
 app.post('/', (req, res) => {
     res.send("You can post to this end point");

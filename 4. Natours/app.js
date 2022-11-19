@@ -31,8 +31,6 @@ app.delete('/api/v1/tours/:id', deleteTour);
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/tours', tourRouter);
-const port = 3000;
 
-app.listen(port, () => {
-  console.log(`App Running OnPort ${port}.....`);
-});
+module.exports = app;
+
